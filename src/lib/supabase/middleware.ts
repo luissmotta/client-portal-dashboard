@@ -59,5 +59,12 @@ export async function updateSession(request: NextRequest) {
         }
     }
 
+    // 3. Protect root route /
+    if (request.nextUrl.pathname === '/') {
+        if (!user) {
+            return NextResponse.redirect(new URL('/login', request.url));
+        }
+    }
+
     return response;
 }
