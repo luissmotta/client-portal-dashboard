@@ -21,7 +21,8 @@ export async function createPage(formData: FormData) {
         });
 
     if (error) {
-        return { error: error.message };
+        console.error("Error creating page:", error);
+        return;
     }
 
     revalidatePath(`/admin/projects/${projectId}`);
@@ -38,7 +39,8 @@ export async function deletePage(formData: FormData) {
         .eq("id", pageId);
 
     if (error) {
-        return { error: error.message };
+        console.error("Error deleting page:", error);
+        return;
     }
 
     revalidatePath(`/admin/projects/${projectId}`);
